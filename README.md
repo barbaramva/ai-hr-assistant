@@ -1,2 +1,54 @@
-# ai-hr-assistant
-Assistente de RH com IA
+# 🤖 HR Buddy AI Agent
+
+Assistente virtual inteligente para Recursos Humanos desenvolvido com **n8n**, **Cohere**, **Telegram** e **MySQL**.
+
+Este projeto foi desenvolvido durante a **Imersão Agentes de IA**, promovida pela **Oracle Next Education (ONE)** em parceria com a **Alura**. Durante a imersão, foi construída uma solução prática utilizando agentes de inteligência artificial, automação de processos e integração com banco de dados para simular um assistente virtual de RH.
+
+O HR Buddy é capaz de responder dúvidas dos colaboradores consultando informações armazenadas em um banco de dados, demonstrando na prática a integração entre IA generativa, automação e consultas SQL.
+
+**Tecnologias utilizadas**
+n8n
+Cohere API
+Telegram Bot API
+MySQL
+Railway
+IA Generativa
+Vector Store
+Memória Conversacional
+
+**Exemplo:**
+
+Usuário: Eric Monné
+
+**Fluxo no n8n**
+<img width="1077" height="547" alt="image" src="https://github.com/user-attachments/assets/a18d490c-c871-4a9b-8467-5026e23d1f11" />
+
+**Conversa no Telegram**
+<img width="756" height="545" alt="image" src="https://github.com/user-attachments/assets/ca78b1ec-8781-4a53-ae1d-3c9b3a899ef1" />
+
+**Banco de Dados**
+O projeto utiliza um banco de dados MySQL hospedado na Railway para armazenar informações dos colaboradores.
+
+### Exemplo de registros
+
+| id | nome | saldo_ferias | banco_horas |
+|----|------|-------------:|------------:|
+| 1 | Eric Monné | 25 | 8 |
+| 2 | Ana Souza | 18 | 5 |
+| 3 | João Lima | 30 | 12 |
+
+## Aprendizados
+
+- Desenvolvimento de um agente de IA para atendimento em RH.
+- Automação de fluxos com **n8n**.
+- Integração entre **Telegram**, **Cohere** e **MySQL**.
+- Consumo de APIs e gerenciamento de credenciais.
+- Criação de prompts para IA e memória conversacional.
+
+## Implementação
+
+Projeto implementado por **Barbara Moreira** durante a **Imersão Agentes de IA**, promovida pela **Oracle Next Education (ONE)** em parceria com a **Alura**.
+
+Estudante de Banco de Dados, com foco em Inteligência Artificial, Ciência de Dados e Automação.
+
+
