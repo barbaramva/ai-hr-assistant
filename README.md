@@ -28,8 +28,7 @@ Usuário: Eric Monné
 <img width="756" height="545" alt="image" src="https://github.com/user-attachments/assets/ca78b1ec-8781-4a53-ae1d-3c9b3a899ef1" />
 <br>
 
-
-**Banco de Dados**<br>
+<br>**Banco de Dados**<br>
 O projeto utiliza um banco de dados MySQL hospedado na Railway para armazenar informações dos colaboradores.
 
 ### Exemplo de registros
