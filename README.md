@@ -24,6 +24,7 @@ Usuário: Eric Monné
 <img width="1077" height="547" alt="image" src="https://github.com/user-attachments/assets/a18d490c-c871-4a9b-8467-5026e23d1f11" />
 
 **Conversa no Telegram**<br>
+
 <img width="756" height="545" alt="image" src="https://github.com/user-attachments/assets/ca78b1ec-8781-4a53-ae1d-3c9b3a899ef1" />
 
 **Banco de Dados**<br>
