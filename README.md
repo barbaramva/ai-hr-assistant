@@ -7,14 +7,14 @@ Este projeto foi desenvolvido durante a **Imersão Agentes de IA**, promovida pe
 O HR Buddy é capaz de responder dúvidas dos colaboradores consultando informações armazenadas em um banco de dados, demonstrando na prática a integração entre IA generativa, automação e consultas SQL.
 
 **Tecnologias utilizadas**<br>
-n8n
-Cohere API
-Telegram Bot API
-MySQL
-Railway
-IA Generativa
-Vector Store
-Memória Conversacional
+n8n<br>
+Cohere API<br>
+Telegram Bot API<br>
+MySQL<br>
+Railway<br>
+IA Generativa<br>
+Vector Store<br>
+Memória Conversacional<br>
 
 **Exemplo:**
 
@@ -23,7 +23,7 @@ Usuário: Eric Monné
 **Fluxo no n8n**
 <img width="1077" height="547" alt="image" src="https://github.com/user-attachments/assets/a18d490c-c871-4a9b-8467-5026e23d1f11" />
 
-**Conversa no Telegram**
+**Conversa no Telegram**<br>
 <img width="756" height="545" alt="image" src="https://github.com/user-attachments/assets/ca78b1ec-8781-4a53-ae1d-3c9b3a899ef1" />
 
 **Banco de Dados**<br>
