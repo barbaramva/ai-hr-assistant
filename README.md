@@ -4,6 +4,8 @@ Assistente virtual inteligente para Recursos Humanos desenvolvido com **n8n**, *
 
 Este projeto foi desenvolvido durante a **Imersão Agentes de IA**, promovida pela **Oracle Next Education (ONE)** em parceria com a **Alura**. Durante a imersão, foi construída uma solução prática utilizando agentes de inteligência artificial, automação de processos e integração com banco de dados para simular um assistente virtual de RH.
 
+Observação: Todos os dados apresentados neste projeto são fictícios e foram utilizados exclusivamente para fins educacionais e de demonstração durante a Imersão Agentes de IA (Oracle Next Education + Alura).
+
 O HR Buddy é capaz de responder dúvidas dos colaboradores consultando informações armazenadas em um banco de dados, demonstrando na prática a integração entre IA generativa, automação e consultas SQL.
 
 **Tecnologias utilizadas**<br>
