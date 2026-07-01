@@ -1,0 +1,267 @@
+{
+  "name": "producao aula 3",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "Você é o HR Buddy, assistente virtual de RH da ChocolaTech.\nREGRAS:\n\nSempre responda em português.\nResponda APENAS dúvidas relacionadas a RH.\nIDENTIFICAÇÃO DO FUNCIONÁRIO:\nSe o usuário não disser quem é, pergunte o nome completo dele logo na primeira mensagem.\nUse a ferramenta MySQL para buscar na tabela funcionarios usando SEMPRE o NOME COMPLETO informado pelo usuário na conversa.\nSe encontrado: use os saldos de férias e banco de horas.\nSe não encontrado: não invente dados pessoais. Responda apenas com base nas políticas gerais de RH do Vector Store.\nUse a base de conhecimento para dúvidas gerais"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        384,
+        0
+      ],
+      "id": "b9b9649e-5e4a-4e98-8f60-309246d88872",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatCohere",
+      "typeVersion": 1,
+      "position": [
+        224,
+        224
+      ],
+      "id": "f732a27e-27f4-4d6b-9e44-6283185ee6cc",
+      "name": "Cohere Chat Model",
+      "credentials": {
+        "cohereApi": {
+          "id": "YzCtEd8l9BwxREgc",
+          "name": "Cohere account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.message.chat.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        352,
+        224
+      ],
+      "id": "6971a55f-5916-4de7-82a3-c5f9494b8d80",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Busque informações sobre políticas de RH férias horários e rotinas da empresa Chocolatech",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        480,
+        224
+      ],
+      "id": "b0ff389e-900e-48f3-a229-a0da5627ed3a",
+      "name": "Simple Vector Store"
+    },
+    {
+      "parameters": {
+        "modelName": "embed-multilingual-v3.0"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
+      "typeVersion": 1,
+      "position": [
+        720,
+        432
+      ],
+      "id": "60e5cdd4-1044-4a11-b850-c17eaac397ae",
+      "name": "Embeddings Cohere",
+      "credentials": {
+        "cohereApi": {
+          "id": "YzCtEd8l9BwxREgc",
+          "name": "Cohere account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "funcionarios",
+          "mode": "list",
+          "cachedResultName": "funcionarios"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "nome",
+              "condition": "LIKE",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('values0_Value', `Sempre que o formato %nome% (com % no inicio e no fim) para busca parcial\nExemplo: \n% João Silva %`, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySqlTool",
+      "typeVersion": 2.5,
+      "position": [
+        768,
+        224
+      ],
+      "id": "be1cba85-319b-4280-b0c1-bc22cc0eb870",
+      "name": "Select rows from a table in MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "dNMI3DYzsIauUEBB",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "993222a0-a58b-421e-9972-9a232fcec204",
+      "name": "Telegram Trigger",
+      "webhookId": "a0037f94-9d3c-4eca-a127-bcf15dd63f71",
+      "credentials": {
+        "telegramApi": {
+          "id": "eongtYuUs4Hzb85P",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        976,
+        0
+      ],
+      "id": "65211eb5-d22a-43d0-b1f0-2fac4dda1e6f",
+      "name": "Send a text message",
+      "webhookId": "90af5ac1-0937-4975-a877-b05871352f7d",
+      "credentials": {
+        "telegramApi": {
+          "id": "eongtYuUs4Hzb85P",
+          "name": "Telegram account 3"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Cohere Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Cohere": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Simple Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Select rows from a table in MySQL": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "2e586266-aed6-4a77-a08e-8c462a8730d9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1421bdbdb29423a429fc2f37df756b9b186794fb12adbd43e665c13dc9b7fd8e"
+  },
+  "nodeGroups": [],
+  "id": "K6EQ5BxAlVkKrcyf",
+  "tags": []
+}
