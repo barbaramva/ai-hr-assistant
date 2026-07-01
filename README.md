@@ -31,13 +31,8 @@ Usuário: Eric Monné
 <br>**Banco de Dados**<br>
 O projeto utiliza um banco de dados MySQL hospedado na Railway para armazenar informações dos colaboradores.
 
-### Exemplo de registros
+![Uploading image.png…]()
 
-| id | nome | saldo_ferias | banco_horas |
-|----|------|-------------:|------------:|
-| 1 | Eric Monné | 25 | 8 |
-| 2 | Ana Souza | 18 | 5 |
-| 3 | João Lima | 30 | 12 |
 
 ## Aprendizados
 
